@@ -17,7 +17,7 @@ public class AdminInitializer {
     ) {
         return args -> {
 
-            String adminEmail = "admin@gamil.com";
+            String adminEmail = "admin@gmail.com";
 
             boolean adminExists = userRepository.findByEmail(adminEmail).isPresent();
 
