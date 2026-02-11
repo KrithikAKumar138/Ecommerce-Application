@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Checkout | E-Store</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --bg: #f4f6fb;
+            --text: #0f172a;
+            --muted: #64748b;
+            --card: #ffffff;
+            --radius: 14px;
+            --shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+
+        header {
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+
+        .page {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+
+        .hero {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            padding: 28px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero h2 {
+            margin: 0 0 6px 0;
+            font-size: 26px;
+        }
+
+        .hero p {
+            margin: 0;
+            opacity: 0.95;
+        }
+
+
+        .card {
+            background: var(--card);
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #334155;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 12px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+        }
+
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+
+        @media (max-width: 600px) {
+            .nav-links {
+                gap: 12px;
+            }
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<header>
+    <div class="header-inner">
+        <div class="logo">🛒 E-Store</div>
+    </div>
+</header>
+
+
+<div class="page">
+
+    <!-- Hero -->
+    <div class="hero">
+        <h2>Checkout</h2>
+        <p>Enter your shipping details to continue</p>
+    </div>
+
+    <!-- Form Card -->
+    <form th:action="@{/checkout/confirm}" method="post">
+        <div class="card">
+
+            <div class="form-group">
+                <label>Name *</label>
+                <input type="text" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Address *</label>
+                <input type="text" name="address" placeholder="Enter your shipping address" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="text" name="phone" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn btn-primary">Continue</button>
+                <a th:href="@{/cart}" class="btn btn-secondary">← Back to Cart</a>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

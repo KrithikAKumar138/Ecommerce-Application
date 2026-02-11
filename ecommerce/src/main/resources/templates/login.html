@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #ffffff;
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --text: #0f172a;
+            --muted: #64748b;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #020617);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .auth-box {
+            background: var(--card);
+            padding: 30px;
+            width: 380px;
+            border-radius: var(--radius);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+        }
+
+        .auth-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .auth-box label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .auth-box input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .auth-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+        }
+
+        .auth-box button {
+            width: 100%;
+            padding: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .auth-box button:hover {
+            background: var(--primary-dark);
+        }
+
+        .auth-box .register-link {
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .auth-box .register-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .auth-box .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .demo-box {
+            margin-top: 20px;
+            padding: 14px;
+            background: #f8fafc;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #0f172a;
+        }
+
+        .demo-box h4 {
+            margin: 0 0 8px 0;
+        }
+
+        .demo-box .role {
+            font-weight: bold;
+        }
+
+        .demo-box code {
+            background: #e5e7eb;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="auth-box">
+
+    <h2>Login</h2>
+
+    <form th:action="@{/login}" method="post">
+
+        <label>Email</label>
+        <input type="email"
+               name="username"
+               placeholder="Enter your email"
+               required>
+
+        <label>Password</label>
+        <input type="password"
+               name="password"
+               placeholder="Enter your password"
+               required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="register-link">
+        New user? <a th:href="@{/register}">Register</a>
+    </div>
+
+    <div class="demo-box">
+        <h4>Demo Accounts</h4>
+
+        <div>
+            <span class="role">Admin:</span>
+            <code>admin@gmail.com</code> / <code>admin123</code>
+        </div>
+
+        <div style="margin-top:6px;">
+            <span class="role">User:</span>
+            <code>user@gmail.com</code> / <code>user123</code>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

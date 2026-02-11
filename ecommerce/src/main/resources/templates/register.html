@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <meta charset="UTF-8">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #ffffff;
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --text: #0f172a;
+            --muted: #64748b;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .auth-box {
+            background: var(--card);
+            padding: 30px;
+            width: 380px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        .auth-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .auth-box label {
+            font-weight: bold;
+            display: block;
+            margin-top: 12px;
+        }
+
+        .auth-box input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-top: 6px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .auth-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+        }
+
+        .auth-box .error {
+            color: red;
+            font-size: 13px;
+        }
+
+        .auth-box .success {
+            color: green;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .auth-box button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .auth-box button:hover {
+            background: var(--primary-dark);
+        }
+
+        .auth-box p {
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .auth-box a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .auth-box a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-box">
+
+    <h2>User Registration</h2>
+
+    <p th:if="${successMessage}" th:text="${successMessage}" class="success"></p>
+    <p th:if="${emailError}" th:text="${emailError}" class="error"></p>
+
+    <form th:action="@{/register}" th:object="${user}" method="post">
+
+        <label>Name</label>
+        <input type="text" th:field="*{name}">
+        <div th:errors="*{name}" class="error"></div>
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}">
+        <div th:errors="*{email}" class="error"></div>
+
+        <label>Password</label>
+        <input type="password" th:field="*{password}">
+        <div th:errors="*{password}" class="error"></div>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p>
+        Already have an account? <a th:href="@{/login}">Login</a>
+    </p>
+
+</div>
+
+</body>
+</html>
